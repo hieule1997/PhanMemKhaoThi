@@ -21,34 +21,34 @@ class DonVi(models.Model):
 
 # Bảng Người gồm Học viên và Cán bộ
 class Nguoi(models.Model):
-  MaHocVien = models.CharField(max_length = 20, unique = True)
-  TenHocVien = models.TextField(max_length = 200)
+  Ma = models.CharField(max_length = 20, unique = True)
+  Ten = models.TextField(max_length = 200)
   CapHam = models.TextField
   NgaySinh = models.DateField
   GioiTinh = models.TextField(max_length = 200)
-  ChucVu =
+  ChucVu = models.TextField(max_length = 200)
 
 # Bảng Kỳ thi
 class KyThi(models.Model):
-  MaKyThi = models.CharField(max_length = 20, uniqie = True)
+  MaKyThi = models.CharField(max_length = 20, unique = True)
   NgayThi = models.DateField
   MonHoc = models.ForeignKey(Mon, on_delete = models.CASCADE)
   KhoaHoc = models.ForeignKey(LopHoc, on_delete = models.CASCADE)
 
 # Bảng Phòng thi
 class PhongThi(models.Model):
-  MaPhong = models.CharField(max_length = 20)
+  MaPhong = models.CharField(max_length = 20, unique = True)
   MaKyThi = models.ForeignKey(KyThi, on_delete = models.CASCADE)
   HinhThucThi = models.TextField(max_length = 200)
-  MaCanBoCoi1 = models.ForeignKey(Nguoi, on_delete = models.CASCADE)
-  MaCanBoCoi2 = models.ForeignKey(Nguoi, on_delete = models.CASCADE)
-  MaCanBoCham1 = models.ForeignKey(Nguoi, on_delete = models.CASCADE)
-  MaCanBoCham1 = models.ForeignKey(Nguoi, on_delete = models.CASCADE)
+  MaCanBoCoi1 = models.CharField(max_length = 20)
+  MaCanBoCoi2 = models.CharField(max_length = 20)
+  MaCanBoCham1 = models.CharField(max_length = 20)
+  MaCanBoCham2 = models.CharField(max_length = 20)
   NgayCham  = models.DateField
 
 # Bảng Chi tiết phòng
 class ChiTietPhong(models.Model):
-  SBD = models.CharField(max_length = 20)
+  SBD = models.CharField(max_length = 20, unique = True)
   MaPhong = models.ForeignKey(PhongThi, on_delete = models.CASCADE)
   MaHocVien = models.ForeignKey(Nguoi, on_delete = models.CASCADE)
   TrangThai = models.TextField(max_length = 200)
